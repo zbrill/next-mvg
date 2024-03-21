@@ -8,7 +8,7 @@ import Button from "./components/Button";
 import { isBrowser } from "react-device-detect";
 import Link from 'next/link'
 import Div100vh from "react-div-100vh";
-
+import { getGames, Game } from '@/lib/db';
 
 const Wrapper = styled.div`
   display: flex;
@@ -57,10 +57,14 @@ export default function Home() {
       roomId: ""
     }
   })
-  
-  const onSubmit = async ({ roomId, name}) => {
+
+  console.log(`node env ${process.env.NODE_ENV}`);
+  const onSubmit = async (roomId:string, name:string) => {
+    // const games: Game[] = await getGames();
 
   }
+
+  
 
   return (
     <Div100vh>

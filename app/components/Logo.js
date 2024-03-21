@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import logo from "../../public/logo.svg";
+import logo from "../../public/logo-2.png";
 import { device } from "../../utils/devices";
 import Link from "next/link";
 import Image from "next/image";

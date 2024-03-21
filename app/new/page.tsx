@@ -55,29 +55,30 @@ const Form = styled.form`
 const Home = () => {
   const [room, setRoom] = useState(null);
   const [players, setPlayers] = useState([]);
-  const [cookies, setCookie] = useCookies();
+  // const [cookies, setCookie] = useCookies();
+  console.log(process.env.NODE_ENV);
 
 
-  const history = useHistory();
+  // const history = useHistory();
 
   const { register, handleSubmit } = useForm();
 
   useEffect(() => {
-    const fetchRoom = () => {
-      db.collection(`games`)
-        .doc(room)
-        .onSnapshot(doc => {
-          const { id } = doc;
-          const { players } = doc.data();
+    // const fetchRoom = () => {
+    //   db.collection(`games`)
+    //     .doc(room)
+    //     .onSnapshot(doc => {
+    //       const { id } = doc;
+    //       const { players } = doc.data();
 
-          setRoom(id);
-          setPlayers(players);
-        });
-    };
+    //       setRoom(id);
+    //       setPlayers(players);
+    //     });
+    // };
 
-    if (room) {
-      fetchRoom();
-    }
+    // if (room) {
+    //   fetchRoom();
+    // }
   });
 
   const handleCreateGame = async ({ username, theme }) => {
@@ -86,28 +87,7 @@ const Home = () => {
     tomorrow.setHours(tomorrow.getHours() + 24);
 
     try {
-      db.collection(`games`)
-        .doc(id)
-        .set(
-          {
-            theme: theme ? theme : "",
-            letter: null,
-            video: null,
-            turn: 0,
-            players: [{name:username, video:""}],
-            nextVideo: null,
-            playing: false,
-            nextLetter: null
-          },
-          { merge: true }
-        );
-      setRoom(id);
-      setCookie("game", { name: username, room: id });      
-      // cookies.set(
-      //   "musicVideoRoom",
-      //   { room: room, name: name },
-      //   { expires: tomorrow }
-      // );
+      console.log('button clicked');
     } catch (e) {
       console.error(e);
     }
@@ -155,19 +135,14 @@ const Home = () => {
         ) : (
           <Actions>
             <Form onSubmit={handleSubmit(handleCreateGame)}>
-              <input
-                type="text"
-                name="username"
-                ref={register}
-                placeholder="Name"
-              />
-              <input
-                type="text"
-                name="theme"
-                ref={register}
-                placeholder="Optionally, create a theme for the game"
-              />
-
+            <input 
+              type="text"
+              {...register('username', { required: true })} 
+              placeholder="Name"/>
+              <input 
+              type="text"
+              {...register('theme', { required: true })} 
+              placeholder="Optionally, create a theme for the game"/>
               <Button htmlType="submit">New Game</Button>
             </Form>
           </Actions>

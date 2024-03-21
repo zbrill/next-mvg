@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "mongodb": "^6.3.0",
-    "next": "14.0.4",
+    "mongodb": "^6.4.0",
+    "next": "latest",
     "react": "^18",
     "react-dom": "^18"
   },
@@ -22,7 +22,6 @@
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
-    "firebase": "10.7.1",
     "postcss": "^8",
     "react-device-detect": "latest",
     "react-div-100vh": "^0.3.8",
